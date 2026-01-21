@@ -4,7 +4,7 @@ AutoMon je distribuirana aplikacija sastavljena od više mikroservisa koji zajed
 
 Aplikacija se sastoji od šest mikroservisa:
 
-# Dijelovi aplikacije
+## Dijelovi aplikacije
 
 1. **storage-service**
 
@@ -30,7 +30,7 @@ Simulira zaustavljanje vozila na odmorištima i šalje podatke preko MQTT-a.
 
 CLI aplikacija koji čita SQLite bazu i prikazuje analitičke izvještaje.
 
-# Pokretanje aplikacije
+## Pokretanje aplikacije
 
 ```
 docker-compose up --build
@@ -39,3 +39,21 @@ docker-compose run analytics-service
 ```
 
 Svaki mikroservis može raditi samostalno bez ostatka sustava.
+
+## Funkcionalnosti
+
+**Analitika i izvještaji** 
+
+1. Analytics-service omogućuje pregled statistika:
+
+- broj vozila na ulazima i izlazima
+
+- prekoračenja brzine na kamerama
+
+- prosječno vrijeme na odmorištima
+
+- vozila koja su putovala brže od očekivanog
+
+2. Samostalno pokretanje svakog servisa.
+
+3. Jednostavno pokretanje cijelog sustava 
