@@ -1,6 +1,6 @@
 # AutoMon
 
-AutoMon je distribuirana aplikacija sastavljena od više mikroservisa koji zajedno simuliraju prometni sustav na sutocesti Pula-RIjeka-Umag. Sustav koristi MQTT za komunikaciju između servisa i SQLite bazu za pohranu događaja.
+AutoMon je distribuirana aplikacija sastavljena od više mikroservisa koji zajedno simuliraju prometni sustav na autocesti Pula-RIjeka-Umag. Sustav koristi MQTT za komunikaciju između servisa i SQLite bazu za pohranu događaja.
 
 Aplikacija se sastoji od šest mikroservisa:
 
