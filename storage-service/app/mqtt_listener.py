@@ -7,10 +7,8 @@ from .database import insert_reading
 from dotenv import load_dotenv
 import os
 
-load_dotenv()
-
-BROKER = os.getenv("BROKER", "localhost")
-PORT = int(os.getenv("PORT"))
+BROKER = "mosquitto"
+PORT = 1883
 
 TOPICS = [
     ("traffic/entrance", 0), # najviše jednom

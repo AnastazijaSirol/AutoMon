@@ -86,19 +86,18 @@ services:
     restart: unless-stopped
     networks:
       - automon-network
-  
+
   analytics-service:
-      build: ./analytics-service
-      container_name: analytics-service
-      depends_on:
-        - storage-service
-      volumes:
-        - traffic-data:/app/db
-      stdin_open: true
-      tty: true
-      environment:
-        DB_PATH: /app/db/traffic.db
-      restart: unless-stopped
+    build: ./analytics-service
+    container_name: analytics-service
+    depends_on:
+      - storage-service
+    volumes:
+      - traffic-data:/app/db
+    stdin_open: true
+    tty: true
+    networks:
+      - automon-network
 
 volumes:
   traffic-data: 

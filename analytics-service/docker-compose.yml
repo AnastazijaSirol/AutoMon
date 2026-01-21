@@ -1,19 +1,9 @@
-version: "3.9"
-
-services:
-  mosquitto:
-    image: eclipse-mosquitto:2
-    container_name: analytics-service-mosquitto
-    volumes:
-      - ./mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf
-    restart: unless-stopped
-
-  analytics-service:
-    build: .
-    container_name: analytics
-    depends_on:
-      - mosquitto
-    environment:
-      BROKER: mosquitto
-      PORT: 1883
-    restart: unless-stopped
+analytics-service:
+  build: ./analytics-service
+  container_name: analytics
+  depends_on:
+    - storage-service
+  volumes:
+    - traffic-data:/app/db
+  stdin_open: true
+  tty: true

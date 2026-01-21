@@ -2,12 +2,13 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
-COPY requirements.txt .
+ENV PYTHONPATH=/app
 
+RUN mkdir -p /app/db
+
+COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY main.py .
+COPY app/ app/
 
-COPY storage/ storage/
-
-CMD ["python", "main.py"]
+CMD ["python", "-m", "app.main"]

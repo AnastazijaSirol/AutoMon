@@ -7,8 +7,8 @@ import os
 
 load_dotenv()
 
-BROKER = os.getenv("BROKER")
-PORT = int(os.getenv("PORT"))
+BROKER = os.getenv("BROKER", "mosquitto")
+PORT = int(os.getenv("PORT", 1883))
 
 TOPIC_IN_CAMERA = "traffic/camera"
 TOPIC_IN_ENTRANCE = "traffic/entrance"

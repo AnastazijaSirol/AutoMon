@@ -1,7 +1,7 @@
 import typer
-from database import get_connection
-import queries
-from queries import detect_fast_vehicles
+from app.database import get_connection
+from app import queries
+from app.queries import detect_fast_vehicles
 
 app = typer.Typer()
 

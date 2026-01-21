@@ -2,7 +2,7 @@ import sqlite3
 from pathlib import Path
 from .models import Reading
 
-DB_PATH = Path("traffic.db")
+DB_PATH = Path("/app/db/traffic.db")
 
 def get_connection():
     return sqlite3.connect(DB_PATH)
