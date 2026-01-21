@@ -1,0 +1,104 @@
+version: "3.9"
+
+networks:
+  automon-network:
+    driver: bridge
+
+services:
+  mosquitto:
+    image: eclipse-mosquitto:2
+    container_name: mosquitto
+    ports:
+      - "1883:1883"
+    volumes:
+      - ./mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf
+    restart: unless-stopped
+    networks:
+      - automon-network
+
+  storage-service:
+    build: ./storage-service
+    container_name: storage-service
+    depends_on:
+      - mosquitto
+    environment:
+      BROKER: mosquitto
+      PORT: 1883
+    volumes:
+      - traffic-data:/app/db
+    restart: unless-stopped
+    networks:
+      - automon-network
+
+  entrance-service:
+    build: ./entrance-service
+    container_name: entrance-service
+    depends_on:
+      - mosquitto
+      - storage-service
+    environment:
+      BROKER: mosquitto
+      PORT: 1883
+    restart: unless-stopped
+    networks:
+      - automon-network
+
+  camera-service:
+    build: ./camera-service
+    container_name: camera-service
+    depends_on:
+      - mosquitto
+      - storage-service
+      - entrance-service
+    environment:
+      BROKER: mosquitto
+      PORT: 1883
+    restart: unless-stopped
+    networks:
+      - automon-network
+  
+  exit-service:
+    build: ./exit-service
+    container_name: exit-service
+    depends_on:
+      - mosquitto
+      - storage-service
+      - entrance-service
+      - camera-service
+    environment:
+      BROKER: mosquitto
+      PORT: 1883
+    restart: unless-stopped
+    networks:
+      - automon-network
+
+  restarea-service:
+    build: ./restarea-service
+    container_name: restarea-service
+    depends_on:
+      - mosquitto
+      - storage-service
+      - entrance-service
+      - exit-service
+    environment:
+      BROKER: mosquitto
+      PORT: 1883
+    restart: unless-stopped
+    networks:
+      - automon-network
+  
+  analytics-service:
+      build: ./analytics-service
+      container_name: analytics-service
+      depends_on:
+        - storage-service
+      volumes:
+        - traffic-data:/app/db
+      stdin_open: true
+      tty: true
+      environment:
+        DB_PATH: /app/db/traffic.db
+      restart: unless-stopped
+
+volumes:
+  traffic-data: 

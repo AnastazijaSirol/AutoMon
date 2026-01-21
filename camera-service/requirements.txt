@@ -1,0 +1,10 @@
+fastapi==0.119.0
+uvicorn==0.37.0
+python-dotenv==1.1.1
+pydantic==2.12.2
+pydantic_core==2.41.4
+mysql-connector-python==9.3.0
+PyMySQL==1.1.1
+paho-mqtt==2.1.0
+requests==2.32.3
+typing_extensions==4.15.0
