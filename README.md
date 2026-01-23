@@ -16,7 +16,7 @@ Simulira ulazak vozila na autocestu i šalje podatke preko MQTT-a.
 
 **3. camera-service**
 
-Simulira prolazak vozila pored kamera i i šalje podatke preko MQTT-a.
+Simulira prolazak vozila pored kamera i šalje podatke preko MQTT-a.
 
 **4. exit-service**
 
